@@ -1,0 +1,76 @@
+<html>
+
+<head>
+  <script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId: '747115553628206',
+      cookie: true,
+      xfbml: true,
+      version: 'v16.0'
+    });
+    FB.AppEvents.logPageView();
+
+    FB.Event.subscribe('auth.login', function(response) {
+      alert('logged in');
+    });
+
+    FB.Event.subscribe('auth.logout', function(response) {
+      alert('logged out');
+    });
+
+    FB.Event.subscribe('auth.authResponseChange', function(response) {
+      console.log('The status of the session changed to: ' + response.status);
+      alert(response.status);
+    });
+
+  };
+
+  function consoleLog(val) {
+    console.log(val);
+    document.getElementById('consoleTextarea').value = JSON.stringify(val);
+  }
+
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) { return; }
+    js = d.createElement(s);
+    js.id = id;
+    js.src = "https://connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+
+  // Facebook Login with JavaScript SDK
+  function launchWhatsAppSignup() {
+    // Launch Facebook login
+    FB.login(function(response) {
+      consoleLog(response);
+      if (response.authResponse) {
+        const accessToken = response.authResponse.accessToken;
+        //Use this token to call the debug_token API and get the shared WABA's ID
+      } else {
+        consoleLog('User cancelled login or did not fully authorize.');
+      }
+    }, {
+      scope: 'business_management,whatsapp_business_management,whatsapp_business_messaging',
+      extras: {
+        feature: 'whatsapp_embedded_signup',
+        // Display new flow to user
+        "version": 2,
+        // setup: {
+        //   ... // Prefilled data can go here
+        // }
+      }
+    });
+  }
+  </script>
+</head>
+
+<body>
+  <h1>Whatsapp Business Account Embedded signup flow</h1>
+  <button onclick="launchWhatsAppSignup()" style="background-color: #1877f2; border: 0; border-radius: 4px; color: #fff; cursor: pointer; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: bold; height: 40px; padding: 0 24px;">Login with Facebook</button>
+  <br><br>
+  <textarea id="consoleTextarea" name="something" rows="20" cols="100">Console output is shown here</textarea>
+</body>
+
+</html>

@@ -1,0 +1,108 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+
+        {
+            "type": "aws-sam",
+            "request": "direct-invoke",
+            "name": "Invoke Lambda",
+            "invokeTarget": {
+                "target": "code",
+                "lambdaHandler": "index.handler",
+                "projectRoot": "${workspaceFolder}"
+            },
+            
+            "lambda": {
+                "runtime": "nodejs18.x",
+                "environmentVariables": {
+                    "VERIFY_TOKEN": "xxxxxx",
+                    "WHATSAPP_TOKEN": "xxxxxx"
+                },
+                "payload": {
+                    "json": {
+                        "version": "2.0",
+                        "routeKey": "$default",
+                        "rawPath": "/webhook",
+                        "rawQueryString": "",
+                        "headers": {
+                            "x-hub-signature-256": "sha256=xxxx",
+                            "content-length": "485",
+                            "x-amzn-tls-version": "TLSv1.2",
+                            "x-forwarded-proto": "https",
+                            "x-forwarded-port": "443",
+                            "x-forwarded-for": "2a03:2880:10ff:17::face:b00c",
+                            "accept": "*/*",
+                            "x-amzn-tls-cipher-suite": "ECDHE-RSA-AES128-GCM-SHA256",
+                            "x-amzn-trace-id": "Root=1-6441e85e-760a1eec3fadcc5647ab2cbf",
+                            "host": "vvoga5aibz2wbzxtxfcn4o5jyy0ksdvj.lambda-url.ap-southeast-1.on.aws",
+                            "content-type": "application/json",
+                            "accept-encoding": "deflate, gzip",
+                            "user-agent": "request",
+                            "x-hub-signature": "sha1=xxxx"
+                        },
+                        "requestContext": {
+                            "accountId": "anonymous",
+                            "apiId": "eggfsfdgfg",
+                            "domainName": "ytereryyyui.lambda-url.ap-southeast-1.on.aws",
+                            "domainPrefix": "ytereryyyui",
+                            "http": {
+                                "method": "POST",
+                                "path": "/webhook",
+                                "protocol": "HTTP/1.1",
+                                "sourceIp": "2a03:2880:10ff:17::face:b00c",
+                                "userAgent": "facebookexternalua"
+                            },
+                            "requestId": "6139b257-9e98-45ee-9e2c-2add08e81356",
+                            "routeKey": "$default",
+                            "stage": "$default",
+                            "time": "21/Apr/2023:01:35:26 +0000",
+                            "timeEpoch": 1682040926824
+                        },
+                        "body": {
+                            "object": "whatsapp_business_account",
+                            "entry": [
+                                {
+                                    "id": "105141485897167",
+                                    "changes": [
+                                        {
+                                            "value": {
+                                                "messaging_product": "whatsapp",
+                                                "metadata": {
+                                                    "display_phone_number": "456464564564",
+                                                    "phone_number_id": "121244354356654"
+                                                },
+                                                "contacts": [
+                                                    {
+                                                        "profile": {
+                                                            "name": "Aswin Thomas"
+                                                        },
+                                                        "wa_id": "6592345678"
+                                                    }
+                                                ],
+                                                "messages": [
+                                                    {
+                                                        "from": "6592345678",
+                                                        "id": "wamid.HBgVHRTHRHTDTRHDTRHYDTHDHYDTHDH3QzQ0NzVCAA==",
+                                                        "timestamp": "1682040925",
+                                                        "text": {
+                                                            "body": "Hello Server"
+                                                        },
+                                                        "type": "text"
+                                                    }
+                                                ]
+                                            },
+                                            "field": "messages"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        "isBase64Encoded": false
+                    }
+                }
+            }
+        }]
+}
