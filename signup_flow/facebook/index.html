@@ -7,7 +7,7 @@
       appId: '204738285556688',
       cookie: true,
       xfbml: true,
-      version: 'v16.0'
+      version: 'v17.0'
     });
     FB.AppEvents.logPageView();
 
@@ -54,8 +54,14 @@
       } else {
         consoleLog('User cancelled login or did not fully authorize.');
       }
-    }, {
-      scope: 'instagram_basic,instagram_manage_messages,pages_manage_metadata,pages_show_list,pages_messaging'});
+     }, 
+     // {
+    //   scope: 'instagram_basic,instagram_manage_messages,pages_manage_metadata,pages_show_list,pages_messaging'
+    // }
+{
+      scope: document.getElementById("scopeTextarea").value
+    }
+      );
   }
   </script>
 </head>
@@ -63,6 +69,8 @@
 <body>
   <h1>Facebook signup flow</h1>
   <button onclick="launchFbSignup()" style="background-color: #1877f2; border: 0; border-radius: 4px; color: #fff; cursor: pointer; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: bold; height: 40px; padding: 0 24px;">Login with Facebook</button>
+  <br><br>
+  <textarea id="scopeTextarea" name="something" rows="3" cols="100">business_management,whatsapp_business_management,whatsapp_business_messaging,ads_read,ads_management</textarea>
   <br><br>
   <textarea id="consoleTextarea" name="something" rows="20" cols="100">Console output is shown here</textarea>
 </body>
